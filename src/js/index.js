@@ -60,7 +60,6 @@ const pElement = document.getElementById('text');
 
 const keyPressButton = ev => {
   pElement.textContent = `Ha pulsado ${ev.key}`;
-  console.log(ev);
 };
 
 window.addEventListener('keydown', keyPressButton);
@@ -101,21 +100,23 @@ previusElement.disabled = true;
 h2Element.textContent = setWords[i];
 
 const nextWord = () => {
-  if (i >= setWords.length - 1) {
-    nextElement.disabled = true;
-  } else {
+  if (i < setWords.length - 1) {
     i++;
     previusElement.disabled = false;
+  }
+  if (i >= setWords.length - 1) {
+    nextElement.disabled = true;
   }
   h2Element.textContent = setWords[i];
 };
 
 const previuosWord = () => {
-  if (i <= 0) {
-    previusElement.disabled = true;
-  } else {
+  if (i > 0) {
     i--;
     nextElement.disabled = false;
+  }
+  if (i <= 0) {
+    previusElement.disabled = true;
   }
   h2Element.textContent = setWords[i];
 };
@@ -125,4 +126,35 @@ nextElement.addEventListener('click', nextWord);
 
 // - Crea un input range con un label, al mover el input range deberá escribir en el label el valor del input range.
 
+const rangeInputElement = document.getElementById('rangeInput');
+const rangeValueElement = document.getElementById('rangeValue');
+
+const RangeInput = () => {
+  rangeValueElement.textContent = rangeInputElement.value;
+};
+
+rangeInputElement.addEventListener('input', RangeInput);
 // - Crea una lista de 4 checkbox con el texto que quieras y un botón, al pulsar el botón deberá decirte cuantos checkbox están marcados y cual es su texto.
+
+const checkElement = document.getElementById('checkButton');
+const checkInput = () => {
+  const checkboxesElement = document.querySelectorAll('.checkbox-item');
+  let checkedCount = 0;
+  let checkedTexts = [];
+
+  checkboxesElement.forEach(checkbox => {
+    if (checkbox.checked) {
+      checkedCount++;
+      checkedTexts.push(checkbox.value);
+    }
+  });
+
+  const resultDivElement = document.getElementById('result');
+  if (checkedCount > 0) {
+    resultDivElement.textContent = `Has marcado ${checkedCount} checkbox: ${checkedTexts.join(', ')}`;
+  } else {
+    resultDivElement.textContent = 'No has marcado ningún checkbox.';
+  }
+};
+
+checkElement.addEventListener('click', checkInput);

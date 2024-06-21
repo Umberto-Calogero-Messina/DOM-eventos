@@ -18,11 +18,20 @@
     <h2 id="tituloH2">NOMBRES</h2>
     <button id="previous">Previous</button>
     <button id="next">Next</button>
+    <hr />
+    <label for="rangeInput">Valor: <span id="rangeValue">50</span></label>
+    <input type="range" id="rangeInput" min="0" max="100" value="50" />
 
-    <label for="">
-      <input type="range" name="" id="" />
-    </label>
+    <hr />
 
+    <div>
+      <label><input type="checkbox" class="checkbox-item" value="Opción 1" /> Opción 1</label>
+      <label><input type="checkbox" class="checkbox-item" value="Opción 2" /> Opción 2</label>
+      <label><input type="checkbox" class="checkbox-item" value="Opción 3" /> Opción 3</label>
+      <label><input type="checkbox" class="checkbox-item" value="Opción 4" /> Opción 4</label>
+    </div>
+    <button id="checkButton">Verificar Checkboxes</button>
+    <div class="result" id="result"></div>
     <script type="module" src="./js/index.js"></script>
   </body>
 </html>
